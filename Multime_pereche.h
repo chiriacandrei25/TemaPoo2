@@ -18,7 +18,21 @@ public:
     {
         (*this) = v;
     }
-    Multime_pereche<T>& operator = (const Multime_pereche<T> &v)
+    virtual bool hasElement(const int &x, const int &y) const
+    {
+        Pereche<T> *node = static_cast<Pereche<T>*>(this->start);
+        for(int i = 0; i < this->n; i++)
+        {
+            if(node->Value() == x && node->secondValue() == y)
+                return true;
+            node = static_cast<Pereche<T>*>(node->nextNode());
+        }
+        return false;
+    }
+    virtual bool hasElement(Pereche<T> &x) const {
+        return hasElement(x.Value(), x.secondValue());
+    }
+    virtual Multime_pereche<T>& operator = (const Multime_pereche<T> &v)
     {
         if(v.n == 0)
         {
@@ -38,6 +52,53 @@ public:
             cur_node = new_node;
         }
         return (*this);
+    }
+    virtual Multime_pereche<T> operator + (const Multime_pereche<T> &v)
+    {
+        Multime_pereche<T> ans = (*this);
+        Pereche<T> *node = static_cast<Pereche<T>*>(v.start);
+        for(int i = 0; i < v.n; i++)
+        {
+            if(!this->hasElement(*node))
+            {
+                Pereche<T> *node1 = new Pereche<T>(*node);
+                ans.addNode(node1);
+            }
+            node = static_cast<Pereche<T>*>(node->next);
+        }
+        return ans;
+    }
+
+    virtual Multime_pereche<T> operator * (const Multime_pereche<T> &v)
+    {
+        Multime_pereche<T> ans;
+        Pereche<T> *node = static_cast<Pereche<T>*>(v.start);
+        for(int i = 0; i < v.n; i++)
+        {
+            if(this->hasElement(*node))
+            {
+                Pereche<T> *node1 = new Pereche<T>(*node);
+                ans.addNode(node1);
+            }
+            node = static_cast<Pereche<T>*>(node->next);
+        }
+        return ans;
+    }
+
+    virtual Multime_pereche<T> operator - (const Multime_pereche<T> &v)
+    {
+        Multime_pereche<T> ans;
+        Pereche<T> *node = static_cast<Pereche<T>*>(this->start);
+        for(int i = 0; i < this->n; i++)
+        {
+            if(!v.hasElement(*node))
+            {
+                Pereche<T> *node1 = new Pereche<T>(*node);
+                ans.addNode(node1);
+            }
+            node = static_cast<Pereche<T>*>(node->next);
+        }
+        return ans;
     }
     friend class Pereche<T>;
     template <typename U>

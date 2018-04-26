@@ -122,6 +122,9 @@ public:
     Pereche<T>(const Pereche<T>& el){
         (*this) = el;
     }
+    T secondValue(){
+        return this->second_val;
+    }
     Pereche<T>& operator = (const Pereche<T> &v)
     {
         this->val = v.val;

@@ -85,19 +85,11 @@ void doQueue()
 
 int main()
 {
-    //Multime<int> v1, v2;
-    //fin >> v1 >> v2;
-    /*fout << v1 << v2;
+    Multime_pereche<int> v1, v2;
+    fin >> v1 >> v2;
+    fout << v1 << v2;
     fout << v1 + v2;
     fout << v1 - v2;
-    fout << v1 * v2;*/
-    fout << produsCartezian(v1, v2);
-
-    /*Multime_pereche<int> vv1, vv2;
-    fin >> vv1 >> vv2;
-    fout << vv1 << vv2;*/
-
-    //doQueue<int>();
-
+    fout << v1 * v2;
     return 0;
 }

@@ -68,7 +68,7 @@ public:
         return ans;
     }
 
-    Multime<T>& operator = (const Multime<T> &v)
+    virtual Multime<T>& operator = (const Multime<T> &v)
     {
         if(v.n == 0)
         {
@@ -90,7 +90,7 @@ public:
         return (*this);
     }
 
-    Multime<T> operator + (const Multime<T> &v)
+    virtual Multime<T> operator + (const Multime<T> &v)
     {
         Multime<T> ans = (*this);
         ElementMultime<T> *node = v.start;
@@ -106,7 +106,7 @@ public:
         return ans;
     }
 
-    Multime<T> operator * (const Multime<T> &v)
+    virtual Multime<T> operator * (const Multime<T> &v)
     {
         Multime<T> ans;
         ElementMultime<T> *node = v.start;
@@ -122,7 +122,7 @@ public:
         return ans;
     }
 
-    Multime<T> operator - (const Multime<T> &v)
+    virtual Multime<T> operator - (const Multime<T> &v)
     {
         Multime<T> ans;
         ElementMultime<T> *node = start;
